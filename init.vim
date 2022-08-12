@@ -87,6 +87,8 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+" Reference https://mattn.kaoriya.net/software/vim/20200106103137.htm
+Plug 'mattn/vim-goimports'
 
 " go
 "" Go Lang Bundle

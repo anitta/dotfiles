@@ -87,11 +87,18 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-" Reference https://mattn.kaoriya.net/software/vim/20200106103137.htm
-Plug 'mattn/vim-goimports'
+nmap gd <Plug>(lsp-definition)
+nmap gi <Plug>(lsp-implementation)
+nmap ,n <plug>(lsp-next-error)
+nmap ,p <plug>(lsp-previous-error)
+nmap <F2> <plug>(lsp-rename)
 
 " go
 "" Go Lang Bundle
+" Reference https://mattn.kaoriya.net/software/vim/20200106103137.htm
+Plug 'mattn/vim-goimports'
+let g:goimports = 1
+let g:goimports_simplify = 1
 
 
 " javascript
@@ -594,3 +601,34 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+" lsp settings {{{
+" Reference https://zenn.dev/skanehira/articles/2020-11-16-vim-writing-articles
+let g:lsp_signs_error = {'text': ''}
+let g:lsp_signs_warning = {'text': ''}
+if !has('nvim')
+  let g:lsp_diagnostics_float_cursor = 1
+endif
+let g:lsp_log_file = ''
+
+let g:lsp_settings = {
+      \ 'efm-langserver': {
+      \   'disabled': 0,
+      \   'allowlist': ['markdown'],
+      \  }
+      \ }
+
+function! s:on_lsp_buffer_enabled() abort
+  setlocal completeopt=menu
+  setlocal omnifunc=lsp#complete
+endfunction
+
+augroup lsp_install
+  au!
+  au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+" }}}
+
+" buffer
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>

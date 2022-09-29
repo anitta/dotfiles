@@ -87,11 +87,24 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-nmap gd <Plug>(lsp-definition)
-nmap gi <Plug>(lsp-implementation)
-nmap ,n <plug>(lsp-next-error)
-nmap ,p <plug>(lsp-previous-error)
-nmap <F2> <plug>(lsp-rename)
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+endfunction
+
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
 " go
 "" Go Lang Bundle
@@ -99,6 +112,8 @@ nmap <F2> <plug>(lsp-rename)
 Plug 'mattn/vim-goimports'
 let g:goimports = 1
 let g:goimports_simplify = 1
+Plug 'mattn/vim-goimpl'
+Plug 'mattn/vim-goaddtags'
 
 
 " javascript
@@ -615,7 +630,12 @@ let g:lsp_settings = {
       \ 'efm-langserver': {
       \   'disabled': 0,
       \   'allowlist': ['markdown'],
-      \  }
+      \  },
+      \  'gopls': {
+      \    'initialization_options': {
+      \      'usePlaceholders': v:true,
+      \    },
+      \  },
       \ }
 
 function! s:on_lsp_buffer_enabled() abort

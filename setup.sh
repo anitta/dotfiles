@@ -20,10 +20,9 @@ astronvim() {
   rm -rf ~/.config/nvim/.git
 }
 
-astronvim-community() {
+astronvim-custom() {
   cp ./AstroNvimUser/community.lua ~/.config/nvim/lua/community.lua
   cp ./AstroNvimUser/plugins/* ~/.config/nvim/lua/plugins/
-
 }
 
 alacritty() {
@@ -43,7 +42,7 @@ zsh() {
 setup(){
   homebrew
   astronvim
-  astronvim-community
+  astronvim-custom
   alacritty
   atuin
   zsh

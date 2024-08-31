@@ -44,11 +44,11 @@ zsh() {
 }
 
 setup(){
-  #homebrew
-  #astronvim
-  #astronvim-custom
-  #alacritty
-  #atuin
+  homebrew
+  astronvim
+  astronvim-custom
+  alacritty
+  atuin
   mise
   zsh
 }

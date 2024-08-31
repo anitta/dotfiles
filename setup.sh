@@ -34,12 +34,19 @@ atuin() {
   cp -r atuin/ ~/.config/atuin
 }
 
+zsh() {
+  mkdir -p ~/.zsh || true
+  cp -r zsh/ ~/.zsh
+  cp -r zshrc ~/.zshrc
+}
+
 setup(){
-  alacritty
   homebrew
   astronvim
   astronvim-community
+  alacritty
   atuin
+  zsh
 }
 
 setup

@@ -5,10 +5,6 @@ homebrew() {
   brew bundle
 }
 
-alacritty() {
-  cp -r alacritty/ ~/.config/alacritty
-}
-
 astronvim() {
   rm -rf ~/.config/nvim.bak
   rm -rf ~/.local/share/nvim.bak
@@ -30,11 +26,20 @@ astronvim-community() {
 
 }
 
+alacritty() {
+  cp -r alacritty/ ~/.config/alacritty
+}
+
+atuin() {
+  cp -r atuin/ ~/.config/atuin
+}
+
 setup(){
   alacritty
   homebrew
   astronvim
   astronvim-community
+  atuin
 }
 
 setup

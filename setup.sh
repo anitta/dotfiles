@@ -26,7 +26,7 @@ astronvim() {
 
 astronvim-community() {
   cp ./AstroNvimUser/community.lua ~/.config/nvim/lua/community.lua
-  cp ./AstroNvimUser/copilot.lua ~/.config/nvim/lua/plugins/copilot.lua
+  cp ./AstroNvimUser/plugins/* ~/.config/nvim/lua/plugins/
 
 }
 

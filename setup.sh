@@ -33,6 +33,10 @@ atuin() {
   cp -r atuin/ ~/.config/atuin
 }
 
+mise() {
+  cp -r mise/ ~/.config/mise
+}
+
 zsh() {
   mkdir -p ~/.zsh || true
   cp -r zsh/ ~/.zsh
@@ -40,11 +44,12 @@ zsh() {
 }
 
 setup(){
-  homebrew
-  astronvim
-  astronvim-custom
-  alacritty
-  atuin
+  #homebrew
+  #astronvim
+  #astronvim-custom
+  #alacritty
+  #atuin
+  mise
   zsh
 }
 

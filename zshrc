@@ -35,5 +35,8 @@ done
 # Load Atuin settings
 eval "$(atuin init zsh)"
 
+# Load mise settings
+eval "$(mise activate zsh)"
+
 # その他の一般的な設定
 setopt no_beep

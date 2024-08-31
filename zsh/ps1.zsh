@@ -1,7 +1,7 @@
 # ~/.zsh/ps1.zsh
 
 # kube-ps1
-source "/usr/local/Cellar/kube-ps1/0.9.0/share/kube-ps1.sh"
+source "$(brew --prefix)/Cellar/kube-ps1/0.9.0/share/kube-ps1.sh"
 
 # PS1
 NEWLINE=$'\n'

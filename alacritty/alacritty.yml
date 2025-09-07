@@ -1,6 +1,0 @@
-scrolling:
-  history: 10000
-window:
-  decorations: full
-  startup_mode: SimpleFullscreen
-background_opacity: 0.9

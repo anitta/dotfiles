@@ -1,0 +1,11 @@
+[scrolling]
+history = 10000
+
+[window]
+decorations = "full"
+startup_mode = "SimpleFullscreen"
+opacity = 0.8  # `background_opacity` は `opacity` に変更
+
+[shell]
+program = "/bin/zsh"
+args = ["-c", "/Users/anitta/.config/alacritty/start-tmux.sh"]

@@ -33,6 +33,11 @@ atuin() {
   cp -r atuin/ ~/.config/atuin
 }
 
+helix() {
+  cp -r helix/ ~/.config/helix
+}
+
+
 mise() {
   cp -r mise/ ~/.config/mise
 }
@@ -45,10 +50,9 @@ zsh() {
 
 setup(){
   homebrew
-  astronvim
-  astronvim-custom
   alacritty
   atuin
+  helix
   mise
   zsh
 }

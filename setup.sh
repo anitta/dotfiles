@@ -42,6 +42,10 @@ mise() {
   cp -r mise/ ~/.config/mise
 }
 
+tmux() {
+  cp -r tmux/ ~/.config/tmux
+}
+
 zsh() {
   mkdir -p ~/.zsh || true
   cp -r zsh/ ~/.zsh
@@ -54,6 +58,7 @@ setup(){
   atuin
   helix
   mise
+  tmux
   zsh
 }
 

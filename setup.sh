@@ -33,6 +33,11 @@ atuin() {
   cp -r atuin/ ~/.config/atuin
 }
 
+hammerspoon() {
+  mkdir -p ~/.hammerspoon || true
+  cp hammerspoon/init.lua ~/.hammerspoon/init.lua
+}
+
 helix() {
   cp -r helix/ ~/.config/helix
 }
@@ -55,6 +60,7 @@ setup(){
   homebrew
   alacritty
   atuin
+  hammerspoon
   helix
   herdr
   mise

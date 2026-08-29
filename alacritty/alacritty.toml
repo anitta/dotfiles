@@ -8,4 +8,4 @@ opacity = 0.8  # `background_opacity` は `opacity` に変更
 
 [shell]
 program = "/bin/zsh"
-args = ["-c", "/Users/anitta/.config/alacritty/start-tmux.sh"]
+args = ["-c", "/Users/anitta/.config/alacritty/start-herdr.sh"]

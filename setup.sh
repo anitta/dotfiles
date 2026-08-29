@@ -37,13 +37,12 @@ helix() {
   cp -r helix/ ~/.config/helix
 }
 
+herdr() {
+  cp -r herdr/ ~/.config/herdr
+}
 
 mise() {
   cp -r mise/ ~/.config/mise
-}
-
-tmux() {
-  cp -r tmux/ ~/.config/tmux
 }
 
 zsh() {
@@ -57,8 +56,8 @@ setup(){
   alacritty
   atuin
   helix
+  herdr
   mise
-  tmux
   zsh
 }
 

@@ -1,0 +1,42 @@
+# ~/.config/herdr/config.toml
+#
+# 全キーの一覧: https://herdr.dev/docs/config-reference/
+# 既定値のダンプ:  herdr --default-config
+# 反映:            herdr server reload-config  (もしくは prefix+shift+r)
+#
+# herdr は設定ファイルなしでも動くため、ここには既定値から変えたい項目だけを置く。
+# tmux.conf にあった `set -g mouse on` と copy-pipe pbcopy は、herdr では
+# ui.mouse_capture / ui.copy_on_select が既定で true のため設定不要。
+
+[theme]
+name = "catppuccin"
+
+[terminal]
+# macOS ではログインシェルで起動し、~/.zprofile の brew shellenv を通す
+shell_mode = "login"
+
+[ui]
+# エージェントの状態を色だけでなく形でも区別する
+status_indicators = "symbols"
+
+# tmux のステータスバー相当。タブ行の右端に表示する
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "datetime", format = "%m/%d %H:%M" },
+]
+tab_bar_right_separator = " · "
+
+[ui.toast]
+# 他のアプリを見ている間に blocked / done になったら OS 通知で知らせる。
+# macOS では terminal-notifier を優先して使うので Brewfile に含めている。
+delivery = "system"
+delay_seconds = 1
+
+[experimental]
+# 日本語入力: TUI が自前でカーソルを描くエージェントでも、
+# IME の変換候補ウィンドウがフォーカス中のペインを追従するようにする
+reveal_hidden_cursor_for_cjk_ime = true
+cjk_ime_agents = ["claude", "codex", "opencode"]
+
+# prefix モードの間だけ ASCII 入力ソースへ切り替える
+switch_ascii_input_source_in_prefix = true

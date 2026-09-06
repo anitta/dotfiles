@@ -11,7 +11,19 @@
 
 require("hs.ipc") -- `hs -c ...` で外から状態を確認できるようにする
 
-local M = {} -- eventtap は参照を保持しないと GC で停止するのでここに束ねる
+-- eventtap / pathwatcher は Lua 側から参照が切れると GC で回収され、監視が
+-- 黙って止まる。Hammerspoon は init.lua の戻り値を保持しないので、
+-- ローカル変数に束ねるだけでは不十分。グローバルに置いて生存させる。
+AlacrittyToggle = AlacrittyToggle or {}
+local M = AlacrittyToggle
+
+-- 再読み込み時に古い監視が二重で走らないように畳む
+for _, key in ipairs({ "interferenceWatcher", "cmdWatcher", "configWatcher" }) do
+  if M[key] then
+    M[key]:stop()
+    M[key] = nil
+  end
+end
 
 local TARGET_BUNDLE_ID = "org.alacritty"
 local DOUBLE_TAP_INTERVAL = 0.3 -- 2度目のタップまでの猶予 (秒)
@@ -104,7 +116,7 @@ M.configWatcher:start()
 if hs.accessibilityState() then
   hs.alert.show("Hammerspoon: ⌘⌘ → Alacritty")
 else
-  hs.alert.show("Hammerspoon にアクセシビリティ権限が必要です")
+  -- 権限付与直後は AXIsProcessTrusted の結果がプロセス内にキャッシュされたままで
+  -- false を返すことがある。eventtap 自体は動いている場合もあるので文言を分ける。
+  hs.alert.show("Hammerspoon: ⌘⌘ → Alacritty (要アクセシビリティ権限 / 未反映なら再起動)")
 end
-
-return M

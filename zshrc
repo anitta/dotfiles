@@ -38,10 +38,6 @@ eval "$(atuin init zsh)"
 # Load mise settings
 eval "$(mise activate zsh)"
 
-eval $(op signin)
-
-export COPILOT_API_KEY=$(op item get "Helix Copilot Token" --field COPILOT_API_KEY --reveal)
-
 export PATH="$HOME/go/bin:$PATH"
 
 # その他の一般的な設定

@@ -1,7 +1,7 @@
 [[language]]
 name = "go"
 auto-format = true
-language-servers = ["gopls", "golangci-lint-lsp", "gpt"]
+language-servers = ["gopls", "golangci-lint-lsp"]
 
 [language-server.gopls]
 command = "gopls"
@@ -11,7 +11,3 @@ command = "golangci-lint-langserver"
 
 [language-server.golangci-lint-lsp.config]
 command = ["golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1"]
-
-[language-server.gpt]
-command = "helix-gpt"
-args = ["--handler", "copilot"]

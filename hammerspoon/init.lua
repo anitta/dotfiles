@@ -1,6 +1,6 @@
 -- ~/.hammerspoon/init.lua
 --
--- Command キーの2度押しで Alacritty (herdr) の表示/非表示をトグルする。
+-- Command キーの2度押しで Ghostty (herdr) の表示/非表示をトグルする。
 --
 -- 修飾キー単独のタップは hs.hotkey では拾えないため、flagsChanged を
 -- eventtap で監視して「単独で押して離した」ことを自前で判定する。
@@ -14,18 +14,21 @@ require("hs.ipc") -- `hs -c ...` で外から状態を確認できるように�
 -- eventtap / pathwatcher は Lua 側から参照が切れると GC で回収され、監視が
 -- 黙って止まる。Hammerspoon は init.lua の戻り値を保持しないので、
 -- ローカル変数に束ねるだけでは不十分。グローバルに置いて生存させる。
-AlacrittyToggle = AlacrittyToggle or {}
-local M = AlacrittyToggle
+GhosttyToggle = GhosttyToggle or {}
+local M = GhosttyToggle
 
 -- 再読み込み時に古い監視が二重で走らないように畳む
-for _, key in ipairs({ "interferenceWatcher", "cmdWatcher", "configWatcher" }) do
-  if M[key] then
-    M[key]:stop()
-    M[key] = nil
+for _, toggle in ipairs({ AlacrittyToggle or {}, M }) do
+  for _, key in ipairs({ "interferenceWatcher", "cmdWatcher", "configWatcher" }) do
+    if toggle[key] then
+      toggle[key]:stop()
+      toggle[key] = nil
+    end
   end
 end
+AlacrittyToggle = nil
 
-local TARGET_BUNDLE_ID = "org.alacritty"
+local TARGET_BUNDLE_ID = "com.mitchellh.ghostty"
 local DOUBLE_TAP_INTERVAL = 0.3 -- 2度目のタップまでの猶予 (秒)
 local MAX_HOLD = 0.4 -- これより長く押していたらタップとみなさない (秒)
 
@@ -114,9 +117,9 @@ M.cmdWatcher:start()
 M.configWatcher:start()
 
 if hs.accessibilityState() then
-  hs.alert.show("Hammerspoon: ⌘⌘ → Alacritty")
+  hs.alert.show("Hammerspoon: ⌘⌘ → Ghostty")
 else
   -- 権限付与直後は AXIsProcessTrusted の結果がプロセス内にキャッシュされたままで
   -- false を返すことがある。eventtap 自体は動いている場合もあるので文言を分ける。
-  hs.alert.show("Hammerspoon: ⌘⌘ → Alacritty (要アクセシビリティ権限 / 未反映なら再起動)")
+  hs.alert.show("Hammerspoon: ⌘⌘ → Ghostty (要アクセシビリティ権限 / 未反映なら再起動)")
 end

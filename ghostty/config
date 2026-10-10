@@ -1,0 +1,6 @@
+# Alacritty の SimpleFullscreen に近い、Space を切り替えない全画面表示
+fullscreen = true
+macos-non-native-fullscreen = true
+background-opacity = 0.8
+# 起動時に herdr のセッションへアタッチする (Alacritty の [shell] 相当)
+command = /Users/anitta/.config/ghostty/start-herdr.sh

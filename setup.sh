@@ -25,8 +25,9 @@ astronvim-custom() {
   cp ./AstroNvimUser/plugins/* ~/.config/nvim/lua/plugins/
 }
 
-alacritty() {
-  cp -r alacritty/ ~/.config/alacritty
+ghostty() {
+  mkdir -p ~/.config/ghostty
+  cp -r ghostty/. ~/.config/ghostty/
 }
 
 atuin() {
@@ -58,7 +59,7 @@ zsh() {
 
 setup(){
   homebrew
-  alacritty
+  ghostty
   atuin
   hammerspoon
   helix
